@@ -1,28 +1,27 @@
-import { Post } from "@/interfaces/post";
-import fs from "fs";
-import matter from "gray-matter";
-import { join } from "path";
-
-const postsDirectory = join(process.cwd(), "_posts");
-
-export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory);
+export async function getAllData() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+ 
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+ 
+  return res.json()
 }
 
-export function getPostBySlug(slug: string) {
-  const realSlug = slug.replace(/\.md$/, "");
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
-
-  return { ...data, slug: realSlug, content } as Post;
-}
-
-export function getAllPosts(): Post[] {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-  return posts;
-}
+export async function getDataById(id: any) {
+  try {
+     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+ 
+     if (!res.ok) {
+       // Include the status code and status text in the error message
+       throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
+     }
+ 
+     return res.json();
+  } catch (error) {
+     // Log the error for debugging purposes
+     console.error(error);
+     // Rethrow the error to be handled by the caller
+     throw error;
+  }
+ }
