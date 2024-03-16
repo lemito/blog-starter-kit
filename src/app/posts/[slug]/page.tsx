@@ -1,8 +1,6 @@
 'use client'
 
-import { Post } from "@/interfaces/post";
 import { getDataById } from "@/lib/api";
-import { useSearchParams } from "next/navigation";
 
 export default async function PostById({ params }: { params: { slug: string } }) {
 
@@ -10,7 +8,9 @@ export default async function PostById({ params }: { params: { slug: string } })
 
   return (
     <main>
-        <p>{ data.id } --- { data.title }</p>
+        <strong  className="my_title">{ data.title }</strong>
+        <p className="my_body">{ data.body }</p>
+        <div className="my_body_html" dangerouslySetInnerHTML={{ __html: data.body }}></div>
     </main >
   );
 }
