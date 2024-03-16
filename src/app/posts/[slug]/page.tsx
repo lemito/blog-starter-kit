@@ -1,5 +1,3 @@
-'use client'
-
 import { getDataById } from "@/lib/api";
 
 export default async function PostById({ params }: { params: { slug: string } }) {
