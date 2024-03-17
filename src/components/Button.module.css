@@ -1,0 +1,10 @@
+.btn-primary {
+  color: aquamarine;
+  border: 2px slategray;
+  border-radius: 10px;
+}
+
+.btn-secondary {
+  color: blanchedalmond;
+  border-radius: 10px;
+}
