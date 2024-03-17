@@ -1,4 +1,6 @@
-import { Post } from "@/interfaces/post";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import PostList from "@/components/PostList";
 import { getAllData } from "@/lib/api";
 
 
@@ -7,11 +9,11 @@ export default async function Index() {
 
   return (
     <main>
-      <ul>
-        {data.map((data: Post) => (
-          <li key={data.id}><a href={`posts/${data.id}`}>{data.id}</a> --- {data.title}</li>
-        ))}
-      </ul>
+      <Header />
+      <br></br>
+      <PostList data={data} />
+      <br></br>
+      <Footer />
     </main>
   );
 }
