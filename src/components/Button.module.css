@@ -1,3 +1,7 @@
+.btn{
+  size: 25px;
+}
+
 .btn-primary {
   color: aquamarine;
   border: 2px slategray;

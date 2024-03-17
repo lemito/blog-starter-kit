@@ -13,7 +13,7 @@ export function Button({ variant, className, ...buttonProps }: Props) {
     <button
       {...buttonProps}
       className={["btn", variant ? styles[`btn-${variant}`] : null, className]
-        .map(Boolean)
+        .filter(Boolean)
         .join(" ")}
     />
   );
